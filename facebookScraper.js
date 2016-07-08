@@ -49,12 +49,14 @@ var facebookScraper = (function(){
         .replace(/,/g, "")
         .replace(/(?:\r\n|\r|\n)/g, "") : "N/A";
 
-      //Hack for no description groups
-      if(result.querySelectorAll("._ajw")[1] === undefined){
+      //Hack for no description groups. 
+      // Ugly hack because in some times there are friends who join groups
+      if(result.querySelectorAll("._ajw")[1] === undefined 
+        || result.querySelectorAll("._ajw")[1].innerText.indexOf("en este grupo") != -1 ){
         membersCount = desc;
         desc = "N/A";
       }
-
+      membersCount = parseInt(membersCount.replace("miembros",""));
       groups.push([title,url,desc,membersCount]);
     }
     console.log(groups);

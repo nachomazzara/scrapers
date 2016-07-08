@@ -36,7 +36,7 @@ var linkedinScraper = (function(){
             var membersCount =  $(this).find(".demographic dd").text()
               .replace(/,/g, "")
               .replace(/(?:\r\n|\r|\n)/g, "");
-
+            membersCount = parseInt(membersCount.replace("miembros",""));
             groups.push([title,url,desc,membersCount]);
         });
         nextElement = $("#results-pagination").find(".next");
